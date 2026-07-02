@@ -236,7 +236,7 @@ As the tests show, at a high level of statistical significance, spatial autocorr
 |---|
 | <img width="559" height="373" alt="Screenshot 2026-07-02 141327" src="https://github.com/user-attachments/assets/1fe3cf60-e2fb-49ef-aa68-27f316ef9b45" /> |
 | **Figure 13:** Akaike information criterion (AIC)|
-The AIC results show that the SAR model has the lowest value and is therefore the most suitable model.
+The AIC results show that the SDM model has the lowest value and is therefore the most suitable model.
 
 ## Data Sources
 
