@@ -3,6 +3,14 @@
 
 The objective of this project is to examine whether a relationship exists between the proportion of employees in the primary sector and annual gross income across Austrian municipalities. To investigate this research question, spatial statistical methods are implemented in R and applied to analyze the data.
 
+![R](https://img.shields.io/badge/R-4.0+-276DC3?logo=r)
+![Spatial](https://img.shields.io/badge/Analysis-Spatial%20Econometrics-blue)
+![SAR/SEM](https://img.shields.io/badge/Models-SAR%20%7C%20SEM%20%7C%20SDM%20%7C%20SLX-blueviolet)
+![Statistics](https://img.shields.io/badge/Tests-Moran%20%7C%20Geary%20%7C%20Getis--Ord-orange)
+![Data](https://img.shields.io/badge/Data%20Source-Statistik%20Austria-green)
+![License](https://img.shields.io/badge/License-CC0-red)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+
 ## Project Structure
 
 ### Data Files
