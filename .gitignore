@@ -29,3 +29,7 @@ tmp/
 # Output and cache files
 *.html
 .cache/
+
+# Large data files and directories
+austria/
+

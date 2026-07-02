@@ -49,16 +49,15 @@ data <- data %>% rename(Name = g_name)
 data <- st_transform(data, crs = "+proj=longlat +ellps=WGS84 +datum=WGS84") 
 data <- st_make_valid(data)
 
-
-income <- read.csv2(file.path(here::here(), "income.csv"), header = T, sep = ";")
-sector_1 <- read.csv2(file.path(here::here(), "sector_1.csv"), header = T, sep = ";")
-population <- read.csv2(file.path(here::here(), "population.csv"), header = T, sep = ";")
-compulsory_education <- read.csv2(file.path(here::here(), "compulsory_education.csv"), header = T, sep = ";")
-apprenticeship <- read.csv2(file.path(here::here(), "apprenticeship.csv"), header = T, sep = ";")
-secondary_school <- read.csv2(file.path(here::here(), "secondary_school.csv"), header = T, sep = ";")
-academic_secondary <- read.csv2(file.path(here::here(), "academic_secondary.csv"), header = T, sep = ";")
-higher_vocational_education <- read.csv2(file.path(here::here(), "higher_vocational_education.csv"), header = T, sep = ";")
-higher_education <- read.csv2(file.path(here::here(), "higher_education.csv"), header = T, sep = ";")
+income <- read.csv2(file.path(here::here(), "data", "income.csv"), header = T, sep = ";")
+sector_1 <- read.csv2(file.path(here::here(), "data", "sector_1.csv"), header = T, sep = ";")
+population <- read.csv2(file.path(here::here(), "data", "population.csv"), header = T, sep = ";")
+compulsory_education <- read.csv2(file.path(here::here(), "data", "compulsory_education.csv"), header = T, sep = ";")
+apprenticeship <- read.csv2(file.path(here::here(), "data", "apprenticeship.csv"), header = T, sep = ";")
+secondary_school <- read.csv2(file.path(here::here(), "data", "secondary_school.csv"), header = T, sep = ";")
+academic_secondary <- read.csv2(file.path(here::here(), "data", "academic_secondary.csv"), header = T, sep = ";")
+higher_vocational_education <- read.csv2(file.path(here::here(), "data", "higher_vocational_education.csv"), header = T, sep = ";")
+higher_education <- read.csv2(file.path(here::here(), "data", "higher_education.csv"), header = T, sep = ";")
 
 
 # merge of all socioeconomic data with the shapefile data
@@ -92,7 +91,7 @@ queen <- nb2listw(queen.nb, zero.policy = T) #create a listw object for spatial 
 longitude <- map_dbl(data$geometry, ~st_centroid(.x)[[1]]) 
 latitude <- map_dbl(data$geometry, ~st_centroid(.x)[[2]]) 
 coords <- cbind(longitude, latitude) 
-pdf("plot_queen.pdf")
+pdf(file.path(here::here(), "output", "plot_queen.pdf"))
 plot(st_geometry(data), border = "#ababab", bg = "#1f1f1f", col = "#1f1f1f")
 plot(queen.nb, coords, add = TRUE, col = "red", lwd = 0.05)
 dev.off()
@@ -104,11 +103,11 @@ dev.off()
 ######### Creating charts and plots #########
 
 # Create scatter plot – income per Federal State
-bland <- read.csv2(file.path(here::here(), "bland.csv"), header = T, sep = ";")
+bland <- read.csv2(file.path(here::here(), "data", "bland.csv"), header = T, sep = ";")
 data_boxplot <- merge(data,bland,by="ID")
 
 # Create boxplot of income per Federal State
-pdf("plot_Boxplott.pdf") #plotten Boxplott
+pdf(file.path(here::here(), "output", "plot_Boxplott.pdf")) #plotten Boxplott
 ggplot(data_boxplot) +
   geom_boxplot(aes(x = BLAND, y = income, fill = "Boxplots")) + 
   labs(x = "Federal State", y = "Gross Earnings") +
@@ -121,7 +120,7 @@ dev.off()
 
 
 # Create choropleth map of income
-pdf("plot_income.pdf")
+pdf(file.path(here::here(), "output", "plot_income.pdf"))
 ggplot() +
   geom_sf(data = data, aes(fill = income)) +
   scale_fill_gradientn(
@@ -145,7 +144,7 @@ ggplot() +
 dev.off()
 
 # Create plot for sector 1 employment
-pdf("plot_sector1.pdf")
+pdf(file.path(here::here(), "output", "plot_sector1.pdf"))
 ggplot() +
   geom_sf(data = data, aes(fill = sector_1)) +
   scale_fill_gradientn(
@@ -175,7 +174,7 @@ dev.off()
 # Moran's I 
 moran.test(data$income,queen)
 
-pdf("plot_moran.pdf")
+pdf(file.path(here::here(), "output", "plot_moran.pdf"))
 moran_qu <- moran.plot(data$income, queen) #the test is significant, indicating spatial autocorrelation
 dev.off()
 
@@ -192,7 +191,7 @@ geary_ctest <- geary.test(data$income, listw = queen)
 print(geary_ctest)
 
 geary_output <- capture.output(geary_ctest)# create a text output stream
-writeLines(geary_output, "geary_result.txt")# save the result
+writeLines(geary_output, file.path(here::here(), "output", "geary_result.txt"))# save the result
 
 
 # local getis-ord g test
@@ -204,7 +203,7 @@ data_gstat <- data
 data_gstat$gstat <- as.numeric(localG_test) #add column with values of the local getis ord g 
 
 # plot local getis-ord g test 
-pdf("plot_localgetisord.pdf")
+pdf(file.path(here::here(), "output", "plot_localgetisord.pdf"))
 ggplot() +
   geom_sf(data = data_gstat, aes(fill = gstat, geometry = geometry)) +
   scale_fill_gradientn(
@@ -232,7 +231,7 @@ dev.off()
 # local getis ord detail view of Vienna and surrounding areas
 data_wien_u <- data_gstat[data_gstat$ID >= 30000 & data_gstat$ID <= 33000 | data_gstat$ID >= 90100 & data_gstat$ID <= 92400 | data_gstat$ID >= 10100 & data_gstat$ID <= 10324 | data_gstat$ID >= 10701 & data_gstat$ID <= 10727 , ] #create new table with filter
 
-pdf("plot_localgetisord_wien.pdf")
+pdf(file.path(here::here(), "output", "plot_localgetisord_wien.pdf"))
 ggplot() +
   geom_sf(data = data_wien_u, aes(fill = gstat, geometry = geometry)) +
   scale_fill_gradientn(
@@ -260,7 +259,7 @@ dev.off()
 # local getis ord detail view of Vienna
 data_wien <- data_gstat[data_gstat$ID >= 90100 & data_gstat$ID <= 92400 , ] #create new table with filter
 
-pdf("plot_localgetisord_wien_stadt.pdf")
+pdf(file.path(here::here(), "output", "plot_localgetisord_wien_stadt.pdf"))
 ggplot() +
   geom_sf(data = data_wien, aes(fill = gstat, geometry = geometry)) +
   scale_fill_gradientn(
@@ -293,8 +292,7 @@ OLS <- lm(f, data = data)
 summary(OLS)
 
 stargazer(OLS, title= "OLS-Model", style= "default",
-          decimal.mark= ",", out= "ols.html")
-
+          decimal.mark= ",", out= file.path(here::here(), "output", "ols.html"))
 
 
 ### LM test for spatial dependence
@@ -303,11 +301,11 @@ lm.RStests(OLS, queen,zero.policy = T,test=c("RLMerr", "RLMlag"))
 
 lmtest_output <- lm.RStests(OLS, queen,zero.policy = T,test=c("LMerr", "LMlag"))
 lmtest_output <- capture.output(lmtest_output)# create a text output stream
-writeLines(lmtest_output, "lmtest_result.txt")# save the result
+writeLines(lmtest_output, file.path(here::here(), "output", "lmtest_result.txt"))# save the result
 
 lmRtest_output <- lm.RStests(OLS, queen,zero.policy = T,test=c("RLMerr", "RLMlag"))
 lmRtest_output <- capture.output(lmRtest_output)#
-writeLines(lmRtest_output, "lmRtest_result.txt")
+writeLines(lmRtest_output, file.path(here::here(), "output", "lmRtest_result.txt"))
 
 
 
@@ -320,7 +318,7 @@ summary(sar)
 impacts(sar,listw=queen) 
 impacts_output <- impacts(sar,listw=queen) 
 impacts_output <- capture.output(impacts_output)
-writeLines(impacts_output, "impacts_result.txt")
+writeLines(impacts_output, file.path(here::here(), "output", "impacts_result.txt"))
 
 
 ### SEM model

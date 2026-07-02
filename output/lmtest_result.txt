@@ -1,0 +1,20 @@
+
+	Rao's score (a.k.a Lagrange multiplier) diagnostics for spatial
+	dependence
+
+data:  
+model: lm(formula = f, data = data)
+test weights: queen
+
+RSerr = 812.09, df = 1, p-value < 2.2e-16
+
+
+	Rao's score (a.k.a Lagrange multiplier) diagnostics for spatial
+	dependence
+
+data:  
+model: lm(formula = f, data = data)
+test weights: queen
+
+RSlag = 639.6, df = 1, p-value < 2.2e-16
+
