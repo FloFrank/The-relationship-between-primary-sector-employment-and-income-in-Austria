@@ -7,16 +7,16 @@ This project analyzes the relationship between employment in the primary sector 
 ## Project Structure
 
 ### Data Files
-- `sector_1.csv` - Primary sector employment data
-- `income.csv` - Income data
-- `population.csv` - Population statistics
-- `apprenticeship.csv` - Apprenticeship statistics
-- `compulsory_education.csv` - Compulsory education attainment
-- `secondary_school.csv` - Secondary school completion rates
-- `academic_secondary.csv` - Academic secondary education rates
-- `higher_vocational_education.csv` - Higher vocational training data
-- `higher_education.csv` - Higher education attainment
-- `bland.csv` - Additional demographic data
+- `sector_1.csv` - Share of employment in the primary sector in 2020 (Anteil der Beschäftigten im Sektor I 2020)
+- `income.csv` - Annual gross salary 2011 (Jahresbruttobezug 2011)
+- `population.csv` - Population statistics 2020 (Bevölkerungs 2020)
+- `apprenticeship.csv` - Apprenticeship (Anteil der Bevölkerung mit Lehrlabschluss 2020)
+- `compulsory_education.csv` - Compulsory education attainment (Anteil der Bevölkerung mit Pflichtschulabschluss 2020)
+- `secondary_school.csv` - Secondary school completion rates (Anteil der Bevölkerung mit BMS Abschluss 2020)
+- `academic_secondary.csv` - Academic secondary education rates (Anteil der Bevölkerung mit AHS Abschluss 2020)
+- `higher_vocational_education.csv` - Higher vocational training data (Anteil der Bevölkerung mit BHS Abschluss 2020)
+- `higher_education.csv` - Higher education attainment (Anteil der Bevölkerung mit Hochschulabschluss 2020)
+- `bland.csv` - Federal states (Bundesländer von Österreich) 
 
 ### Code
 - `austrian_income_sector_analysis.R` - Main R script for statistical analysis and visualization
