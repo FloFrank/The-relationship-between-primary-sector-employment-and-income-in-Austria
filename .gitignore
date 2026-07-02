@@ -1,0 +1,31 @@
+# R-specific files
+.Rhistory
+.Rdata
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+.tmp/
+temp/
+tmp/
+
+# Environment variables
+.env
+.env.local
+
+# Output and cache files
+*.html
+.cache/
