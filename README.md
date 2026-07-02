@@ -29,6 +29,14 @@ This project analyzes the relationship between employment in the primary sector 
   - `ggplot2` (for plotting)
   - `dplyr` (for data wrangling)
   - `corrplot` (for correlation analysis)
+  - `sf` (for handling spatial vector data)
+  - `spatialreg` (for spatial regression models)
+  - `spdep` (for spatial dependence analysis)
+  - `purrr` (for functional programming)
+  - `scales` (for axis and legend formatting)
+  - `stargazer` (for regression tables)
+  - `here` (for reproducible file paths)
+  - `rstudioapi` (for interacting with the RStudio IDE)
 
 ## Installation & Usage
 
