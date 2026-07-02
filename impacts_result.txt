@@ -1,0 +1,9 @@
+Impact measures (lag, exact):
+                                     Direct  Indirect      Total
+sector_1 dy/dx                    -18.77833 -15.08278  -33.86111
+compulsory_education dy/dx        -58.73288 -47.17434 -105.90722
+apprenticeship dy/dx               16.72676  13.43496   30.16173
+academic_secondary dy/dx          -72.27161 -58.04868 -130.32029
+higher_vocational_education dy/dx 287.50436 230.92398  518.42834
+population_density dy/dx          -41.80374 -33.57683  -75.38057
+higher_education dy/dx            403.70093 324.25325  727.95418

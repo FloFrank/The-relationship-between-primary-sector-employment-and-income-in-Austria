@@ -10,8 +10,7 @@
 
 # install and load packages
 
-libs <- c("tidyverse","dplyr","tidyr",
-          "RPostgres","ggplot2","stringr","ggthemes","sf","spatialreg","spdep","purrr","scales","stargazer","here","rstudioapi")
+libs <- c("tidyverse","dplyr","tidyr","ggplot2","stringr","ggthemes","sf","spatialreg","spdep","purrr","scales","stargazer","here","rstudioapi")
 
 installed_libs <- libs %in% rownames(installed.packages())
 if (any(installed_libs == F)) {
@@ -130,8 +129,8 @@ ggplot() +
     values = scales::rescale(c(25000, 80000), to = c(0, 1)),
     limits = c(25000, 80000)
   ) +
-  labs(title = "Average annual gross earnings 
-       of employees employed throughout the year") +
+  labs(title = "Average annual gross earnings
+                      of employees per the year") +
   theme_minimal() +
   theme(
     plot.background = element_rect(fill = "#1f1f1f"),
