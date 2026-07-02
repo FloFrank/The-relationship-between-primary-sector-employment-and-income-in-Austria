@@ -1,4 +1,3 @@
-<img width="929" height="884" alt="moran" src="https://github.com/user-attachments/assets/6b1d5a6c-99a0-4f5a-a6ef-e93174b7c42c" /># The Relationship Between Primary Sector Employment and Income in Austria
 
 ## Description
 
@@ -101,6 +100,8 @@ The opposite pattern is observed in the distribution of the share of employees i
 | <img width="929" height="884" alt="moran" src="https://github.com/user-attachments/assets/44ad1d4c-c70e-4844-9a88-d08d862df448" /> |
 | **Figure 4:** Moran's I |
 
+**Spatial Autocorrelation: Moran's I Test**
+
 The spatial autocorrelation of the income data was evaluated using a Moran's I test under the assumption of randomization, utilizing a **Queen contiguity** weights matrix.
 
 | Parameter | Value |
@@ -115,6 +116,30 @@ The spatial autocorrelation of the income data was evaluated using a Moran's I t
 | **Alternative Hypothesis** | Greater (Positive Spatial Autocorrelation) |
 
 For the calculation of Moran’s I, a Queen contiguity matrix was constructed and applied to the income data. The Moran’s I statistic yields a value of 0.627 with a p-value below 0.05, indicating a statistically significant positive spatial autocorrelation.
+
+
+
+**Spatial Autocorrelation: Geary's C Test**
+
+The local/spatial dissimilarity of the income data was evaluated using a Geary's C test under the assumption of randomization, utilizing a **Queen contiguity** weights matrix.
+
+| Parameter | Value |
+| :--- | :--- |
+| **Data** | `data$income` |
+| **Weights Matrix** | Queen |
+| **Geary C Statistic ($C$)** | `0.351749677` |
+| **Expectation ($E[C]$)** | `1.000000000` |
+| **Variance ($Var[C]$)** | `0.000312162` |
+| **Standard Deviate ($z$)** | `36.69` |
+| **p-value** | `< 2.2e-16` |
+In contrast to Moran’s I, Geary’s C captures local spatial differences. The results indicate variations in income and suggest the presence of spatial clustering.
+
+
+| |
+|---|
+| <img width="947" height="595" alt="getisord" src="https://github.com/user-attachments/assets/b78d273a-b632-4872-a8f6-e25acce35270" /> |
+| **Figure 5:** Local Getis-Ord's G |
+
 
 The analysis produces several outputs:
 - Correlation matrices and heat maps
