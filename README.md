@@ -143,7 +143,7 @@ In contrast to Moran’s I, Geary’s C captures local spatial differences. The 
 The map shows the Local Getis-Ord Gi* statistics and reveals clear clustering patterns in income levels in Austria. In particular, the north-western surroundings of Vienna stand out as the area with the highest incomes in the country.
 
 
-### **OLS-Model**
+## **OLS-Model**
 
 The OLS model was estimated using the following variables, where the dependent variable is income and the independent variables are sector_1, compulsory_education, apprenticeship, academic_secondary, higher_vocational_education, population_density, and higher_education.
 
