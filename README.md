@@ -69,14 +69,7 @@ This project investigates:
 - Demographic trends related to sector employment
 - Statistical significance of relationships
 
-## Results
-
-### Key Findings
-- Kurze Zusammenfassung der Hauptergebnisse
-- Korrelation zwischen Sektor I Beschäftigung und Einkommenshöhe: [Wert]
-- Räumliche Muster: [Befunde]
-
-### Visualizations
+## **Results and Visualizations**
 
 | |
 |---|
@@ -255,7 +248,7 @@ This project is provided as-is for educational and research purposes.
 
 ## Author
 
-Academic Analysis Project - Austria Economic Data
+Florian Frank 2026 
 
 ---
 
