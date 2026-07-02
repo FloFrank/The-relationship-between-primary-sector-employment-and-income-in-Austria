@@ -3,6 +3,14 @@
 
 The objective of this project is to examine whether a relationship exists between the proportion of employees in the primary sector and annual gross income across Austrian municipalities. To investigate this research question, spatial statistical methods are implemented in R and applied to analyze the data.
 
+![R](https://img.shields.io/badge/R-4.0+-276DC3?logo=r)
+![Spatial](https://img.shields.io/badge/Analysis-Spatial%20Econometrics-blue)
+![SAR/SEM](https://img.shields.io/badge/Models-SAR%20%7C%20SEM%20%7C%20SDM%20%7C%20SLX-blueviolet)
+![Statistics](https://img.shields.io/badge/Tests-Moran%20%7C%20Geary%20%7C%20Getis--Ord-orange)
+![Data](https://img.shields.io/badge/Data%20Source-Statistik%20Austria-green)
+![License](https://img.shields.io/badge/License-CC0-red)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+
 ## Project Structure
 
 ### Data Files
@@ -135,7 +143,7 @@ In contrast to Moran’s I, Geary’s C captures local spatial differences. The 
 The map shows the Local Getis-Ord Gi* statistics and reveals clear clustering patterns in income levels in Austria. In particular, the north-western surroundings of Vienna stand out as the area with the highest incomes in the country.
 
 
-### **OLS-Model**
+## **OLS-Model**
 
 The OLS model was estimated using the following variables, where the dependent variable is income and the independent variables are sector_1, compulsory_education, apprenticeship, academic_secondary, higher_vocational_education, population_density, and higher_education.
 
@@ -226,9 +234,9 @@ As the tests show, at a high level of statistical significance, spatial autocorr
 ## **Calculate and compare AIC values**
 | |
 |---|
-| <img width="552" height="756" alt="Screenshot 2026-07-02 140939" src="https://github.com/user-attachments/assets/e3f147bf-6047-4ef9-8e30-820852788c0b" /> |
+| <img width="559" height="373" alt="Screenshot 2026-07-02 141327" src="https://github.com/user-attachments/assets/1fe3cf60-e2fb-49ef-aa68-27f316ef9b45" /> |
 | **Figure 13:** Akaike information criterion (AIC)|
-The AIC results show that the SAR model has the lowest value and is therefore the most suitable model.
+The AIC results show that the SDM model has the lowest value and is therefore the most suitable model.
 
 ## Data Sources
 
