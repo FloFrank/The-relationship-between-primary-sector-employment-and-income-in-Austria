@@ -139,21 +139,115 @@ In contrast to Moran’s I, Geary’s C captures local spatial differences. The 
 |---|
 | <img width="947" height="595" alt="getisord" src="https://github.com/user-attachments/assets/b78d273a-b632-4872-a8f6-e25acce35270" /> |
 | **Figure 5:** Local Getis-Ord's G |
+The map shows the Local Getis-Ord Gi* statistics and reveals clear clustering patterns in income levels in Austria. In particular, the north-western surroundings of Vienna stand out as the area with the highest incomes in the country.
 
 
-The analysis produces several outputs:
-- Correlation matrices and heat maps
-- Spatial autocorrelation results (Moran's I, Geary's C)
-- Regression model comparisons (OLS, SAR, SEM, SDM)
-- Regional maps showing primary sector employment patterns
+### **OLS-Model**
 
-### Model Summary
-| Model | Coefficient | R² | Spatial Significance |
-|-------|-------------|-----|----------------------|
-| OLS | ... | ... | ... |
-| SAR | ... | ... | ... |
-| SEM | ... | ... | ... |
-| SDM | ... | ... | ... |
+The OLS model was estimated using the following variables, where the dependent variable is income and the independent variables are sector_1, compulsory_education, apprenticeship, academic_secondary, higher_vocational_education, population_density, and higher_education.
+
+## OLS Regression Results (Income Predictors)
+
+The baseline Ordinary Least Squares (OLS) regression model analyzes the impact of socio-economic factors and education levels on income (`data$income`). 
+
+### Model Summary Table
+
+| Predictor (Variable) | Estimate ($\beta$) | Std. Error | t-value | p-value | Significance |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **(Intercept)** | 26,227.92 | 1,781.93 | 14.719 | $< 2\times 10^{-16}$ | *** |
+| **sector_1** (Primary Sector) | -19.03 | 4.87 | -3.909 | $9.55\times 10^{-5}$ | *** |
+| **compulsory_education** | 30.96 | 23.06 | 1.343 | 0.1795 | |
+| **apprenticeship** | 80.38 | 22.57 | 3.562 | 0.0004 | *** |
+| **academic_secondary** | 153.26 | 48.81 | 3.140 | 0.0017 | ** |
+| **higher_vocational_education**| 533.29 | 37.22 | 14.328 | $< 2\times 10^{-16}$ | *** |
+| **population_density** | -43.41 | 4.80 | -9.039 | $< 2\times 10^{-16}$ | *** |
+| **higher_education** | 563.45 | 23.63 | 23.845 | $< 2\times 10^{-16}$ | *** |
+
+*Significance codes: `0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1*
+
+###  Model Diagnostics
+
+*   **R-squared ($R^2$):** `0.6884` | **Adjusted $R^2$:** `0.6874`
+    *   *Interpretation:* The model explains approximately **68.7%** of the variance in income.
+*   **Residual Standard Error:** `2,487` on `2,099` degrees of freedom.
+*   **F-statistic:** `662.4` ($p < 2.2\times 10^{-16}$) 
+    *   *Interpretation:* The overall model is highly statistically significant.
+
+The results clearly indicate that higher levels of education increase income, while factors such as high population density or a high share of employment in the primary sector tend to reduce it. Only compulsory education alone shows no statistically detectable effect on income.
+
+## **Lagrange-Multiplier-Test**
+| |
+|---|
+| <img width="642" height="395" alt="Screenshot 2026-07-02 134640" src="https://github.com/user-attachments/assets/6db23abb-d982-4e7f-94d4-b81c15debcf5" /> |
+| **Figure 6:** RSerr (Spatial Error) and RSlag (Spatial Lag) |
+
+| |
+|---|
+|<img width="659" height="386" alt="Screenshot 2026-07-02 134929" src="https://github.com/user-attachments/assets/3159b9b6-1094-4779-a564-4ee4321a9007" /> |
+| **Figure 7:** adjRSerr (Adjusted Spatial Error) and adjRSlag (Adjusted Spatial Lag) |
+As the tests show, at a high level of statistical significance, spatial autocorrelation is present in the OLS model, indicating that a spatial model needs to be applied.
+
+
+## **Spatial modeling (spatial regression)**
+
+**SAR-Model**
+
+| |
+|---|
+| <img width="600" height="522" alt="Screenshot 2026-07-02 140141" src="https://github.com/user-attachments/assets/40a44c9f-408c-491f-a0e0-bf65ce7befb1" /> |
+| **Figure 8:** SAR-Model |
+
+| |
+|---|
+| <img width="555" height="179" alt="Screenshot 2026-07-02 140346" src="https://github.com/user-attachments/assets/24591869-763c-4112-af5a-78a1a0e58295" /> |
+| **Figure 9:** SAR-Model Impacts |
+
+
+**SEM-Model**
+| |
+|---|
+| <img width="615" height="511" alt="Screenshot 2026-07-02 140553" src="https://github.com/user-attachments/assets/d191b692-265b-4123-bc18-9589ee2e9d8d" /> |
+| **Figure 10:** SEM-Model |
+
+
+**SDM-Model**
+| |
+|---|
+| <img width="607" height="671" alt="Screenshot 2026-07-02 140739" src="https://github.com/user-attachments/assets/73f4cf96-93a6-4663-92e2-4a5ef83234d5" /> |
+| **Figure 11:** SDM-Model |
+
+
+
+**SLX-Model**
+| |
+|---|
+| <img width="670" height="391" alt="Screenshot 2026-07-02 140920" src="https://github.com/user-attachments/assets/19485adf-159f-4ed8-a3fb-9026182e28de" /> |
+| **Figure 11:** SLX-Model |
+
+
+| |
+|---|
+| <img width="552" height="756" alt="Screenshot 2026-07-02 140939" src="https://github.com/user-attachments/assets/e3f147bf-6047-4ef9-8e30-820852788c0b" /> |
+| **Figure 12:** SLX-Model |
+
+## **Calculate and compare AIC values**
+| |
+|---|
+| <img width="552" height="756" alt="Screenshot 2026-07-02 140939" src="https://github.com/user-attachments/assets/e3f147bf-6047-4ef9-8e30-820852788c0b" /> |
+| **Figure 13:** Akaike information criterion (AIC)|
+The AIC results show that the SAR model has the lowest value and is therefore the most suitable model.
+
+## Data Sources
+
+*   **Azizoglu, Bert Mustafa, und Edith Waltner.** (2008). *Branchen- und sektorspezifische Einkommensunterschiede in Österreich.*
+*   **Statistik Austria.** (2011). *Jahresbruttobezug 2011.*
+*   **Statistik Austria.** (2020). *Anteil der Beschäftigten im Sektor I 2020.*
+*   **Statistik Austria.** (2020). *Anteil der Bevölkerung mit Pflichtschulabschluss 2020.*
+*   **Statistik Austria.** (2020). *Anteil der Bevölkerung mit Lehrabschluss 2020.*
+*   **Statistik Austria.** (2020). *Anteil der Bevölkerung mit BMS-Abschluss 2020.*
+*   **Statistik Austria.** (2020). *Anteil der Bevölkerung mit AHS-Abschluss 2020.*
+*   **Statistik Austria.** (2020). *Anteil der Bevölkerung mit Hochschulabschluss 2020.*
+*   **Statistik Austria.** (2026). *Gliederung Österreich in Gemeinden 2026.*
 
 ## License
 
