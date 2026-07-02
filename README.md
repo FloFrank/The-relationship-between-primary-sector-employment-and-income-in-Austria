@@ -1,12 +1,13 @@
-# The Relationship Between Primary Sector Employment and Income in Austria
+<img width="929" height="884" alt="moran" src="https://github.com/user-attachments/assets/6b1d5a6c-99a0-4f5a-a6ef-e93174b7c42c" /># The Relationship Between Primary Sector Employment and Income in Austria
 
 ## Description
 
-This project analyzes the relationship between employment in the primary sector (agriculture, forestry, fishing) and income levels in Austria. The analysis uses statistical methods in R to explore correlations and trends between primary sector employment rates and household or personal income.
+The objective of this project is to examine whether a relationship exists between the proportion of employees in the primary sector and annual gross income across Austrian municipalities. To investigate this research question, spatial statistical methods are implemented in R and applied to analyze the data.
 
 ## Project Structure
 
 ### Data Files
+- `STATISTIK_AUSTRIA_GEM_20260101.shp` Austrian Gemeinden (municipalities) (Gliederung Österreich 2026)
 - `sector_1.csv` - Share of employment in the primary sector in 2020 (Anteil der Beschäftigten im Sektor I 2020)
 - `income.csv` - Annual gross salary 2011 (Jahresbruttobezug 2011)
 - `population.csv` - Population statistics 2020 (Bevölkerungs 2020)
@@ -68,6 +69,66 @@ This project investigates:
 - Educational attainment patterns in Austria
 - Demographic trends related to sector employment
 - Statistical significance of relationships
+
+## Results
+
+### Key Findings
+- Kurze Zusammenfassung der Hauptergebnisse
+- Korrelation zwischen Sektor I Beschäftigung und Einkommenshöhe: [Wert]
+- Räumliche Muster: [Befunde]
+
+### Visualizations
+
+| |
+|---|
+| <img width="942" height="944" alt="boxplott_bundesland" src="https://github.com/user-attachments/assets/d009b3b4-75e2-4b44-b4d6-9d4d81725aec" /> |
+| **Figure 1:** The boxplot shows the distribution of annual gross income across Austrian municipalities, grouped by federal state. |
+
+| |
+|---|
+|<img width="874" height="454" alt="einkommen" src="https://github.com/user-attachments/assets/01e7adfb-c7e1-46a5-a5d0-9a779e3aae65" /> |
+| **Figure 2:** Average annual gross earnings of employees per the year (Euro) |
+The income map at the municipal level shows clear differences between urban agglomerations such as Vienna and its surrounding areas, where higher incomes prevail, and rural municipalities, which tend to have lower income levels.
+
+| |
+|---|
+| <img width="871" height="427" alt="sektor1" src="https://github.com/user-attachments/assets/440347b8-e2a1-41b0-894f-28e5f468a696" /> |
+| **Figure 3:** Proportion of employees in Sector I (Agriculture and Forestry) in % |
+The opposite pattern is observed in the distribution of the share of employees in the primary sector in Austria. Here, the proportion of people employed in the primary sector is higher in rural areas than in urban regions. This raises the question of whether the share of employment in the primary sector has an impact on wage levels.
+
+| |
+|---|
+| <img width="929" height="884" alt="moran" src="https://github.com/user-attachments/assets/44ad1d4c-c70e-4844-9a88-d08d862df448" /> |
+| **Figure 4:** Moran's I |
+
+The spatial autocorrelation of the income data was evaluated using a Moran's I test under the assumption of randomization, utilizing a **Queen contiguity** weights matrix.
+
+| Parameter | Value |
+| :--- | :--- |
+| **Data** | `data$income` |
+| **Weights Matrix** | Queen |
+| **Moran I Statistic ($I$)** | `0.6273237850` |
+| **Expectation ($E[I]$)** | `-0.0004748338` |
+| **Variance ($Var[I]$)** | `0.0001739132` |
+| **Standard Deviate ($z$)** | `47.605` |
+| **p-value** | `< 2.2e-16` |
+| **Alternative Hypothesis** | Greater (Positive Spatial Autocorrelation) |
+
+For the calculation of Moran’s I, a Queen contiguity matrix was constructed and applied to the income data. The Moran’s I statistic yields a value of 0.627 with a p-value below 0.05, indicating a statistically significant positive spatial autocorrelation.
+
+The analysis produces several outputs:
+- Correlation matrices and heat maps
+- Spatial autocorrelation results (Moran's I, Geary's C)
+- Regression model comparisons (OLS, SAR, SEM, SDM)
+- Regional maps showing primary sector employment patterns
+
+### Model Summary
+| Model | Coefficient | R² | Spatial Significance |
+|-------|-------------|-----|----------------------|
+| OLS | ... | ... | ... |
+| SAR | ... | ... | ... |
+| SEM | ... | ... | ... |
+| SDM | ... | ... | ... |
 
 ## License
 
